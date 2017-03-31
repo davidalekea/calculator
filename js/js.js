@@ -18,7 +18,7 @@ let btnDevide = document.querySelector("#btd");
 
 let formula = '';
 let lastChar = '';
-let pressedChar = '';
+let outputData = 0;
 
 
 btn0.addEventListener("click", fbtn0);
@@ -53,21 +53,28 @@ function fbtn9(){digitpress("9");}
 
 btnClear.addEventListener("click", clearFormula);
 function clearFormula(){
+    formula = "";
     lastChar = "";
-    output.value = "";
+    outputData = 0;
+    output.innerHTML = "";
 }
 
 
-let divideOutput = 0;
-let multiplyOutput = 0;
-let addOutput = 0;
-let subtractOutput = 0;
-
 btnEqual.addEventListener("click", calculate);
 function calculate(){
-    formula = output.value;
-    let outputData = eval(formula);
-    output.value = outputData;
+    formula = output.innerHTML;
+    if (formula.match(/^[/*+\-0-9. ]+$/g) !== null){
+        let previousLastChar = formula.substr(formula.length - 1);
+        if (previousLastChar=="/" || previousLastChar=="*" || previousLastChar=="+" || previousLastChar=="-"){
+            formula = formula.substr(0,(formula.length-1));
+        }
+        outputData = eval(formula);
+    }else{
+        outputData = "undefined";
+    }
+    console.log("Output: "+outputData);
+    output.innerHTML = outputData;
+    lastChar = "";
 }
 
 
@@ -88,19 +95,20 @@ function fbtnDevide(){digitpress("/");}
 
 
 function digitpress(pressedChar){
-    formula = output.value;
+    formula = output.innerHTML;
+    if(formula == "undefined") formula = "";
     if(pressedChar == "+" || pressedChar == "-" || pressedChar == "*" || pressedChar == "/"){
-        if(lastChar != "" && lastChar != "+" && lastChar != "-" && lastChar != "*" && lastChar != "/"){
+        if(formula != "" && lastChar != "+" && lastChar != "-" && lastChar != "*" && lastChar != "/"){
             lastChar = pressedChar;
             formula = formula + lastChar;
-        }else if(lastChar != ""){
+        }else if(formula != ""){
             let previousLastChar = formula.substr(formula.length - 1);
             let previousFormula = formula.substr(0, (formula.length - 1));
             lastChar = pressedChar;
             formula = previousFormula + pressedChar;
         }
     }else if(pressedChar == "0"){
-        if((lastChar != "" || lastChar != "+" || lastChar != "-" || lastChar != "*" || lastChar != "/")){
+        if((formula != "0" && lastChar != "+" && lastChar != "-" && lastChar != "*" && lastChar != "/")){
             lastChar = pressedChar;
             formula = formula + lastChar;
         }
@@ -108,7 +116,25 @@ function digitpress(pressedChar){
         lastChar = pressedChar;
         formula = formula + lastChar;
     }
-    output.value = formula;
+    output.innerHTML = formula;
 }
 
 
+//NEW FUNCTION WITH ON KEY PRESS
+document.addEventListener("keypress", digittype);
+function digittype(event){
+    let key = (typeof event.which == "number") ? event.which : event.keyCode || event.charCode;
+    console.log("which:"+event.which+", keyCode:"+event.keyCode+", charCode:"+event.charCode+", key:"+key );
+
+    if(key == 48) fbtn0();
+    else if(key == 49) fbtn1();
+    else if(key == 50) fbtn2();
+    else if(key == 51) fbtn3();
+    else if(key == 52) fbtn4();
+    else if(key == 53) fbtn5();
+    else if(key == 54) fbtn6();
+    else if(key == 55) fbtn7();
+    else if(key == 56) fbtn8();
+    else if(key == 57) fbtn9();
+    else if(key == 13) calculate();
+}

@@ -16,9 +16,13 @@ body {
     width: 100%;
     border: 10px;
     border-radius: 10px;
+    border: 1px solid lightgray;
     background-color: lightgray;
+    min-height: 20px;
     padding-right: 3px;
     text-align: right;
+    margin: 0px;
+    margin-bottom: 8px;
 }
 
 .credit{
