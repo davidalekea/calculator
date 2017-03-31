@@ -1,20 +1,20 @@
-let output = document.querySelector("output");
-let btn0 = document.querySelector("bt0");
-let btn1 = document.querySelector("bt1");
-let btn2 = document.querySelector("bt2");
-let btn3 = document.querySelector("bt3");
-let btn4 = document.querySelector("bt4");
-let btn5 = document.querySelector("bt5");
-let btn6 = document.querySelector("bt6");
-let btn7 = document.querySelector("bt7");
-let btn8 = document.querySelector("bt8");
-let btn9 = document.querySelector("bt9");
-let btnClear = document.querySelector("btc");
-let btnEqual = document.querySelector("bte");
-let btnAdd = document.querySelector("bta");
-let btnSubtract = document.querySelector("bts");
-let btnMultiply = document.querySelector("btm");
-let btnDevide = document.querySelector("btd");
+let output = document.querySelector("#output");
+let btn0 = document.querySelector("#bt0");
+let btn1 = document.querySelector("#bt1");
+let btn2 = document.querySelector("#bt2");
+let btn3 = document.querySelector("#bt3");
+let btn4 = document.querySelector("#bt4");
+let btn5 = document.querySelector("#bt5");
+let btn6 = document.querySelector("#bt6");
+let btn7 = document.querySelector("#bt7");
+let btn8 = document.querySelector("#bt8");
+let btn9 = document.querySelector("#bt9");
+let btnClear = document.querySelector("#btc");
+let btnEqual = document.querySelector("#bte");
+let btnAdd = document.querySelector("#bta");
+let btnSubtract = document.querySelector("#bts");
+let btnMultiply = document.querySelector("#btm");
+let btnDevide = document.querySelector("#btd");
 
 let formula = '';
 let lastChar = '';
@@ -84,6 +84,8 @@ function farrD(){
     let arrD = formula.split("-"); // most power full
 }
 
+
+
 btnAdd.addEventListener("click", fbtnAdd);
 function fbtnAdd(){digitpress("+");}
 
@@ -93,8 +95,8 @@ function fbtnSubtract(){digitpress("-");}
 btnMultiply.addEventListener("click", fbtnbtnMultiply);
 function fbtnbtnMultiply(){digitpress("*");}
 
-btnDevide.addEventListener("click", fbtnbtnDevide);
-function fbtnAdd(){digitpress("/");}
+btnDevide.addEventListener("click", fbtnDevide);
+function fbtnDevide(){digitpress("/");}
 
 
 
@@ -102,7 +104,10 @@ function fbtnAdd(){digitpress("/");}
 function digitpress(pressedChar){
     formula = output.value;
     if(pressedChar == "+" || pressedChar == "-" || pressedChar == "*" || pressedChar == "/"){
-        if(lastChar != ""){
+        if(lastChar != "" && lastChar != "+" && lastChar != "-" && lastChar != "*" && lastChar != "/"){
+            lastChar = pressedChar;
+            formula = formula + lastChar;
+        }else if(lastChar != ""){
             let previousLastChar = formula.substr(formula.length - 1);
             let previousFormula = formula.substr(0, (formula.length - 1));
             lastChar = pressedChar;
