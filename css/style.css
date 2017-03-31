@@ -21,6 +21,10 @@ body {
     text-align: right;
 }
 
+.credit{
+    text-align: center;
+}
+
 .buttons {
     width: 100%;
     display: flex;
@@ -40,4 +44,11 @@ body {
     margin: .6em .3em;
     border-radius: 5px;
     border-width: 2px;
+    background: #F2F2F2;
+    transition: background 0.3s;
 }
+.buttons input:active {
+    background: #B8C25D;
+    text-decoration: none;
+}
+.buttons input:focus {outline:0;}
