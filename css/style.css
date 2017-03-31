@@ -1,0 +1,41 @@
+body {
+    background-color: beige;
+}
+
+.calculator {
+    width: 200px;
+    margin: auto;
+    border: 2px solid darkgray;
+    border-radius: 8px;
+    padding: 1em;
+    padding-bottom: .5em;
+    background-color: honeydew;
+}
+
+#output{
+    width: 100%;
+    border: 10px;
+    border-radius: 10px;
+    background-color: lightgray;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-flow: row;
+    flex-wrap: wrap;
+    border-color: black;
+    border: 5px;
+}
+
+
+.buttons input{
+    display: inline-flex;
+    justify-content: space-between;
+    width: 20%;
+    font-size: .9em;
+    margin: .6em .3em;
+    border-radius: 5px;
+    border-width: 2px;
+}
