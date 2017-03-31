@@ -19,6 +19,7 @@ let btnDevide = document.querySelector("#btd");
 let formula = '';
 let lastChar = '';
 let outputData = 0;
+let enterBtnClicked = false;
 
 
 btn0.addEventListener("click", fbtn0);
@@ -73,6 +74,7 @@ function calculate(){
         outputData = "undefined";
     }
     console.log("Output: "+outputData);
+    output.innerHTML = "";
     output.innerHTML = outputData;
     lastChar = "";
 }
@@ -95,7 +97,11 @@ function fbtnDevide(){digitpress("/");}
 
 
 function digitpress(pressedChar){
+    console.log(enterBtnClicked);
+    if(enterBtnClicked) return; //stop triggering click on pressing enter button
+
     formula = output.innerHTML;
+    console.log("Previous formula: "+formula);
     if(formula == "undefined") formula = "";
     if(pressedChar == "+" || pressedChar == "-" || pressedChar == "*" || pressedChar == "/"){
         if(formula != "" && lastChar != "+" && lastChar != "-" && lastChar != "*" && lastChar != "/"){
@@ -116,6 +122,7 @@ function digitpress(pressedChar){
         lastChar = pressedChar;
         formula = formula + lastChar;
     }
+    console.log("Current formula: "+formula);
     output.innerHTML = formula;
 }
 
@@ -136,5 +143,9 @@ function digittype(event){
     else if(key == 55) fbtn7();
     else if(key == 56) fbtn8();
     else if(key == 57) fbtn9();
-    else if(key == 13) calculate();
+    else if(key == 13) {
+        enterBtnClicked = true;
+        calculate();
+        setTimeout(function (){enterBtnClicked = false;}, 500)
+    }
 }
