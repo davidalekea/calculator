@@ -66,22 +66,8 @@ let subtractOutput = 0;
 btnEqual.addEventListener("click", calculate);
 function calculate(){
     formula = output.value;
-    farrS()
-}
-function farrS(equation){
-    let arrS = equation.split("-"); // less power full
-    arrS.forEach(farrA);
-}
-function farrA(subEquation){
-    let arrA = subEquation.split("+");
-    arrA.forEach(farrM);
-}
-function farrM(subEquation){
-    let arrM = formula.split("-");
-    arrM.forEach(farrD);
-}
-function farrD(){
-    let arrD = formula.split("-"); // most power full
+    let outputData = eval(formula);
+    output.value = outputData;
 }
 
 
