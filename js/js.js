@@ -88,7 +88,7 @@ btnAdd.addEventListener("click", fbtnAdd);
 function fbtnAdd(){digitpress("+");}
 
 btnSubtract.addEventListener("click", fbtnSubtract);
-function btnSubtract(){digitpress("-");}
+function fbtnSubtract(){digitpress("-");}
 
 btnMultiply.addEventListener("click", fbtnbtnMultiply);
 function fbtnbtnMultiply(){digitpress("*");}
